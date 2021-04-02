@@ -8,14 +8,14 @@ class Ironfish < Formula
   desc "Everything you need to get started with Ironfish"
   homepage "https://github.com/iron-fish/homebrew-brew"
   head "https://github.com/iron-fish/homebrew-brew.git"
-  depends_on "iron-fish/brew/ironfish-node"
+  depends_on "node@14"
 
   url URL
   sha256 SHA
 
   def install
     inreplace "bin/ironfish", /^CLIENT_HOME=/, "export IRONFISH_OCLIF_CLIENT_HOME=#{lib/"client"}/ironfish-cli\nCLIENT_HOME="
-    inreplace "bin/ironfish", "\"$DIR/node\"", "#{Formula["ironfish-node"].opt_share}/ironfish-node"
+    inreplace "bin/ironfish", "\"$DIR/node\"", "#{Formula["node@14"].bin}/node"
 
     libexec.install Dir["*"]
     bin.install_symlink libexec/"bin/ironfish"
