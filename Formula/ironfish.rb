@@ -15,7 +15,7 @@ class Ironfish < Formula
 
   def install
     inreplace "bin/ironfish", /^CLIENT_HOME=/, "export IRONFISH_OCLIF_CLIENT_HOME=#{lib/"client"}/ironfish-cli\nCLIENT_HOME="
-    inreplace "bin/ironfish", "\"$DIR/node\"", "#{Formula["ironfish-node"].opt_share}/node"
+    inreplace "bin/ironfish", "\"$DIR/node\"", "#{Formula["ironfish-node"].opt_share}/ironfish-node"
 
     libexec.install Dir["*"]
     bin.install_symlink libexec/"bin/ironfish"

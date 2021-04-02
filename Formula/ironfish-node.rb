@@ -9,10 +9,10 @@ class IronfishNode < Formula
   sha256 SHA
 
   def install
-    share.install buildpath/"node"
+    share.install buildpath/"ironfish-node"
   end
 
   def test
-    system bin/"node", "version"
+    system bin/"ironfish-node", "version"
   end
 end
