@@ -8,7 +8,7 @@ class Ironfish < Formula
   desc "Everything you need to get started with Ironfish"
   homepage "https://github.com/iron-fish/homebrew-brew"
   head "https://github.com/iron-fish/homebrew-brew.git"
-  # depends_on "ironfish/brew/ironfish-node"
+  depends_on "iron-fish/brew/ironfish-node"
 
   url URL
   sha256 SHA

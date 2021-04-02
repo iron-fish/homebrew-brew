@@ -1,14 +1,18 @@
+URL = "https://ironfish-cli.s3.amazonaws.com/node-14.16.0.tar.gz"
+SHA = "6756b0fbf652c773e85993c904391bece2eb3d088bf926467a980c0ec34bacc8"
+
 class IronfishNode < Formula
   desc "node.js dependency for ironfish"
-  homepage "https://ironfnish.network"
-  url "https://cli-assets.heroku.com/homebrew/node-12.16.2.tar.xz"
-  sha256 "3be1a9fb2715f62561912d6e824f5e8dc2d64cf7e074f6c4ac8b5c9b4a836761"
+  homepage "https://ironfish.network"
+
+  url URL
+  sha256 SHA
 
   def install
     share.install buildpath/"node"
   end
 
-  # def test
-  #   system bin/"node", "version"
-  # end
+  def test
+    system bin/"node", "version"
+  end
 end
