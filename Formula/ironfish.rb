@@ -1,8 +1,8 @@
 require "formula"
 require_relative "../lib/download_strategy"
 
-URL = "https://ironfish-cli.s3.amazonaws.com/ironfish-cli-466de934.tar.gz"
-SHA = "8d443089c3d54185d52c8c6d812df9522208244430c82f7cad4b46812314b183"
+URL = "https://ironfish-cli.s3.amazonaws.com/ironfish-cli-5d79ed9.tar.gz"
+SHA = "68d245c2c23832a853b95c1efde5bbb69b5a8fdcc1b48dcea03673f4818b4a83"
 
 class Ironfish < Formula
   desc "Everything you need to get started with Ironfish"
