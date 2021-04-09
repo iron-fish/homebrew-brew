@@ -3,7 +3,7 @@ require "formula"
 URL = "https://ironfish-cli.s3.amazonaws.com/ironfish-cli-c4275d1.tar.gz"
 SHA = "6b2dc6fdb2c352523e7f3f1a4bbc6c20bf9b607790559c0789fc6faed2e7911b"
 
-class IronfishBeta < Formula
+class Ironfishbeta < Formula
   desc "Ironfish beta brew distribution"
   homepage "https://github.com/iron-fish/homebrew-brew"
   head "https://github.com/iron-fish/homebrew-brew.git"
