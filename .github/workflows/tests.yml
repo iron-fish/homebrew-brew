@@ -1,0 +1,47 @@
+name: Tests
+on:
+  push:
+    branches: master
+  pull_request:
+jobs:
+  tap_syntax:
+    runs-on: ubuntu-latest
+    name: Lint tap syntax
+    steps:
+      - name: Set up Homebrew
+        id: set-up-homebrew
+        uses: Homebrew/actions/setup-homebrew@master
+
+      - name: Cache Homebrew Bundler RubyGems
+        id: cache
+        uses: actions/cache@v1
+        with:
+          path: ${{ steps.set-up-homebrew.outputs.gems-path }}
+          key: ${{ runner.os }}-rubygems-${{ steps.set-up-homebrew.outputs.gems-hash }}
+          restore-keys: ${{ runner.os }}-rubygems-
+
+      - name: Install Homebrew Bundler RubyGems
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: brew install-bundler-gems
+
+      - run: brew test-bot --only-tap-syntax --tap iron-fish/brew
+
+  build-macos:
+    needs: tap_syntax
+    runs-on: macos-latest
+    name: Build formula on macOS
+    if: github.event_name == 'pull_request'
+
+    steps:
+      - name: Set up Homebrew
+        id: set-up-homebrew
+        uses: Homebrew/actions/setup-homebrew@master
+
+      - run: brew test-bot --only-cleanup-before --tap iron-fish/brew
+
+      - run: brew test-bot --only-setup --tap iron-fish/brew
+
+      - run: brew test-bot --build-from-source --only-formulae --tap iron-fish/brew
+
+      - run: brew test-bot --only-cleanup-after
+        if: always()
