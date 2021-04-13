@@ -1,12 +1,17 @@
-URL = "https://ironfish-cli.s3.amazonaws.com/ironfish-cli-c4275d1.tar.gz".freeze
-SHA = "6b2dc6fdb2c352523e7f3f1a4bbc6c20bf9b607790559c0789fc6faed2e7911b".freeze
+URL = "https://ironfish-cli.s3.amazonaws.com/ironfish-cli-c68dc2d.tar.gz".freeze
+SHA = "0f10a1def5505dde2f85e8e5d733bf7fbfe4e8a95dca8d45524a4bd5664af4ed".freeze
 
 class Ironfish < Formula
   desc "Everything you need to get started with Iron Fish"
-  homepage "https://github.com/iron-fish/homebrew-brew"
+  homepage "https://ironfish.network/"
   url URL
+  version "1"
   sha256 SHA
+  license "MPL-2.0"
+  version_scheme 1
+
   head "https://github.com/iron-fish/homebrew-brew.git"
+
   depends_on "node@14"
 
   def install
