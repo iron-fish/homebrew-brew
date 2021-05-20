@@ -1,11 +1,12 @@
-URL = "https://ironfish-cli.s3.amazonaws.com/ironfish-cli-5feb710.tar.gz".freeze
-SHA = "6d408a6f9eba73dc0b8c759363a90347c5a457125934fe04660a5adc7af4fcca".freeze
+URL = "https://ironfish-cli.s3.amazonaws.com/ironfish-cli-8fb5d9b.tar.gz".freeze
+SHA = "63400ab7d055bfd4c8482fc3f38a1c45f2dc42bfc183fbef9501af4ff529a04d".freeze
+VERSION = "8".freeze
 
 class Ironfishbeta < Formula
   desc "Beta distribution of Iron Fish"
   homepage "https://ironfish.network/"
   url URL
-  version "7"
+  version VERSION
   sha256 SHA
   license "MPL-2.0"
   version_scheme 1
