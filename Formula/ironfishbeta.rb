@@ -1,6 +1,6 @@
-URL = "https://ironfish-cli.s3.amazonaws.com/ironfish-cli-f4b4e4b.tar.gz".freeze
-SHA = "3081b58df232b4a5e8d28587b3f69e82a1422dcd5552bbaa54ebd41b4907f206".freeze
-VERSION = "9".freeze
+URL = "https://ironfish-cli.s3.amazonaws.com/ironfish-cli-54d6e44.tar.gz".freeze
+SHA = "35d1934c7acc26e339fd2e0c7014767521b6b669f246dba72826424c8cf3eb0b".freeze
+VERSION = "10".freeze
 
 class Ironfishbeta < Formula
   desc "Beta distribution of Iron Fish"
