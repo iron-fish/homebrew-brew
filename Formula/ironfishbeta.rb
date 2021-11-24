@@ -1,6 +1,6 @@
-URL = "https://ironfish-cli.s3.amazonaws.com/ironfish-cli-e996df7.tar.gz".freeze
-SHA = "3eb5f1e65f8c57df27e116162cbaabe87d1e60eef53b8ce3f6e2a93d4ea82a98".freeze
-VERSION = "22".freeze
+URL = "https://ironfish-cli.s3.amazonaws.com/ironfish-cli-dcd61cb.tar.gz".freeze
+SHA = "18fa2aeaf1ee07cf016035cf950c0bc8919c3026714686ddf528adaaeb0a0ca9".freeze
+VERSION = "24".freeze
 
 class Ironfishbeta < Formula
   desc "Beta distribution of Iron Fish"
@@ -13,12 +13,12 @@ class Ironfishbeta < Formula
 
   head "https://github.com/iron-fish/homebrew-brew.git"
 
-  depends_on "node@14"
+  depends_on "node@16"
 
   def install
     inreplace "bin/ironfish", /^CLIENT_HOME=/,
 "export IRONFISH_OCLIF_CLIENT_HOME=#{lib/"client"}/ironfish-cli\nCLIENT_HOME="
-    inreplace "bin/ironfish", "\"$DIR/node\"", "#{Formula["node@14"].bin}/node"
+    inreplace "bin/ironfish", "\"$DIR/node\"", "#{Formula["node@16"].bin}/node"
 
     mv "bin/ironfish", "bin/ironfishbeta"
     libexec.install Dir["*"]
