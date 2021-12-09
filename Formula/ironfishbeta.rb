@@ -16,6 +16,18 @@ class Ironfishbeta < Formula
   depends_on "node@16"
 
   def install
+    if OS.linux?
+      odie "Homebrew builds are not yet supported on Linux. " \
+           "However, you can build from source by following the steps in our GitHub README: " \
+           "https://github.com/iron-fish/ironfish#install"
+    end
+
+    if Hardware::CPU.arm?
+      odie "Homebrew builds are not yet supported on M1/Apple Silicon. " \
+           "However, you can build from source by following the steps in our GitHub README: " \
+           "https://github.com/iron-fish/ironfish#install"
+    end
+
     inreplace "bin/ironfish", /^CLIENT_HOME=/,
 "export IRONFISH_OCLIF_CLIENT_HOME=#{lib/"client"}/ironfish-cli\nCLIENT_HOME="
     inreplace "bin/ironfish", "\"$DIR/node\"", "#{Formula["node@16"].bin}/node"
