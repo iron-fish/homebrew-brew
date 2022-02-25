@@ -1,6 +1,6 @@
-URL = "https://ironfish-cli.s3.amazonaws.com/ironfish-cli-1f3dc31.tar.gz".freeze
-SHA = "dac5b21587901615381314b0f3be0f5917f388f222d1e59e4b7ddf29dff8df05".freeze
-VERSION = "36".freeze
+URL = "https://ironfish-cli.s3.amazonaws.com/ironfish-cli-d752b4e.tar.gz".freeze
+SHA = "7a5f4048452507eafa03296bd4683b976c825f40724a1418896863593d6155e8".freeze
+VERSION = "37".freeze
 
 class Ironfish < Formula
   desc "Everything you need to get started with Iron Fish"
