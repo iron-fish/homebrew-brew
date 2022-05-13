@@ -1,5 +1,5 @@
-URL = "https://ironfish-cli.s3.amazonaws.com/ironfish-cli-1abccc9.tar.gz".freeze
-SHA = "0f28f9459002752aa04c2c3540d5fd0b458ac4a462dab90e75d4cde0e78891c0".freeze
+URL = "https://ironfish-cli.s3.amazonaws.com/ironfish-cli-48d9cef.tar.gz".freeze
+SHA = "1efe9fbbd93789e13d44e6a60b37148ddb8c344843307d074071f5f90bff8606".freeze
 VERSION = "44".freeze
 
 class Ironfish < Formula
