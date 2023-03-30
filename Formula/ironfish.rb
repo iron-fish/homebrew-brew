@@ -13,7 +13,7 @@ class Ironfish < Formula
 
   head "https://github.com/iron-fish/homebrew-brew.git"
 
-  depends_on "node@16"
+  depends_on "node@18"
 
   def install
     if OS.linux?
@@ -30,7 +30,7 @@ class Ironfish < Formula
 
     inreplace "bin/ironfish", /^CLIENT_HOME=/,
 "export IRONFISH_OCLIF_CLIENT_HOME=#{lib/"client"}/ironfish-cli\nCLIENT_HOME="
-    inreplace "bin/ironfish", "\"$DIR/node\"", "#{Formula["node@16"].bin}/node"
+    inreplace "bin/ironfish", "\"$DIR/node\"", "#{Formula["node@18"].bin}/node"
 
     libexec.install Dir["*"]
     bin.install_symlink libexec/"bin/ironfish"
