@@ -1,6 +1,6 @@
 URL = "https://releases.ironfish.network/ironfish-cli-6e6508d.tar.gz".freeze
 SHA = "94b8deda51cd11809ce6b727b421caba8f67a888eef82ea99ae1c75611cfeaf7".freeze
-VERSION = "86".freeze
+VERSION = "87".freeze
 
 class Ironfish < Formula
   desc "Everything you need to get started with Iron Fish"
@@ -13,7 +13,7 @@ class Ironfish < Formula
 
   head "https://github.com/iron-fish/homebrew-brew.git"
 
-  depends_on "node@16"
+  depends_on "node@18"
 
   def install
     if OS.linux?
@@ -30,7 +30,7 @@ class Ironfish < Formula
 
     inreplace "bin/ironfish", /^CLIENT_HOME=/,
 "export IRONFISH_OCLIF_CLIENT_HOME=#{lib/"client"}/ironfish-cli\nCLIENT_HOME="
-    inreplace "bin/ironfish", "\"$DIR/node\"", "#{Formula["node@16"].bin}/node"
+    inreplace "bin/ironfish", "\"$DIR/node\"", "#{Formula["node@18"].bin}/node"
 
     libexec.install Dir["*"]
     bin.install_symlink libexec/"bin/ironfish"
