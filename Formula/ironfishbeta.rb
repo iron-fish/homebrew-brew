@@ -1,6 +1,6 @@
-URL = "https://releases.ironfish.network/ironfish-cli-a584239.tar.gz".freeze
-SHA = "eb20c4cfd9015ad06b2fe0a3b3f87c99c61ba411cae23aebd96d015fdec284ec".freeze
-VERSION = "100".freeze
+URL = "https://releases.ironfish.network/ironfish-cli-246e55d.tar.gz".freeze
+SHA = "9ecde5ab045d53e710577d02f4770037567adaf8ef3417c2f77821566f5b3017".freeze
+VERSION = "101".freeze
 
 class Ironfishbeta < Formula
   desc "Beta distribution of Iron Fish"
