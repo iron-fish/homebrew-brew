@@ -1,42 +1,44 @@
-URL = "https://releases.ironfish.network/ironfish-cli-64c70d2.tar.gz".freeze
-SHA = "9df1950383d56dda263551671b720c607b4f0a1536e5cda4868409e586202264".freeze
-VERSION = "104".freeze
+VERSION = "1.14.0".freeze
+NPM_URL = "https://registry.npmjs.org/ironfish/-/ironfish-#{VERSION}.tgz".freeze
+NPM_SHA = "907295644713ab8ece8b9d0ad6fc6cf10f916e977db185d654ba3ca7109e59f9".freeze
+GITHUB_URL = "https://github.com/iron-fish/ironfish/archive/refs/tags/v#{VERSION}.tar.gz"
+GITHUB_SHA = "ec2a52a1129c86746bc0e422515e12ca1cce2994ae2656ad0652a1dafa6341b8"
+
+require "language/node"
 
 class Ironfish < Formula
   desc "Everything you need to get started with Iron Fish"
   homepage "https://ironfish.network/"
-  url URL
-  version VERSION
-  sha256 SHA
+  url NPM_URL
+  sha256 NPM_SHA
   license "MPL-2.0"
-  version_scheme 1
+  version_scheme 2
 
-  head "https://github.com/iron-fish/homebrew-brew.git"
+  depends_on "rust" => :build
+  depends_on "yarn" => :build
+  depends_on "node@20"
 
-  depends_on "node@18"
+  resource "source" do
+    url GITHUB_URL
+    sha256 GITHUB_SHA
+  end
 
   def install
-    if OS.linux?
-      odie "Homebrew builds are not yet supported on Linux. " \
-           "However, you can build from source by following the steps in our GitHub README: " \
-           "https://github.com/iron-fish/ironfish#install"
+    system "npm", "install", *Language::Node.std_npm_install_args(libexec) - ["--build-from-source"]
+    rm_f libexec/"lib/node_modules/ironfish/node_modules/" \
+                 "@ironfish/rust-nodejs-darwin-arm64/ironfish-rust-nodejs.darwin-arm64.node"
+
+    resource("source").stage do
+      system "yarn"
+      cp Dir["ironfish-rust-nodejs/*.node"], "#{libexec}/lib/node_modules/ironfish/node_modules/@ironfish/rust-nodejs"
     end
 
-    if Hardware::CPU.arm?
-      odie "Homebrew builds are not yet supported on M1/Apple Silicon. " \
-           "However, you can build from source by following the steps in our GitHub README: " \
-           "https://github.com/iron-fish/ironfish#install"
-    end
+    inreplace libexec/"lib/node_modules/ironfish/bin/run", "env node", "env #{Formula["node@18"].bin}/node"
 
-    inreplace "bin/ironfish", /^CLIENT_HOME=/,
-"export IRONFISH_OCLIF_CLIENT_HOME=#{lib/"client"}/ironfish-cli\nCLIENT_HOME="
-    inreplace "bin/ironfish", "\"$DIR/node\"", "#{Formula["node@18"].bin}/node"
-
-    libexec.install Dir["*"]
-    bin.install_symlink libexec/"bin/ironfish"
+    bin.install_symlink libexec/"lib/node_modules/ironfish/bin/run" => "ironfish"
   end
 
   test do
-    system bin/"ironfish", "version"
+    system bin/"ironfish", "-d=.", "wallet:create", "test"
   end
 end
