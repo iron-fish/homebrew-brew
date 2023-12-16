@@ -14,23 +14,24 @@ class Ironfish < Formula
   license "MPL-2.0"
   version_scheme 2
 
-  depends_on "node@20"
-  depends_on "yarn" => :build
   depends_on "rust" => :build
+  depends_on "yarn" => :build
+  depends_on "node@20"
 
-  resource "source" do 
+  resource "source" do
     url GITHUB_URL
     sha256 GITHUB_SHA
   end
 
   def install
     system "npm", "install", *Language::Node.std_npm_install_args(libexec) - ["--build-from-source"]
-    rm_f libexec/"lib/node_modules/ironfish/node_modules/@ironfish/rust-nodejs-darwin-arm64/ironfish-rust-nodejs.darwin-arm64.node"
-    
-    resource("source").stage {
+    rm_f libexec/"lib/node_modules/ironfish/node_modules/" \
+                 "@ironfish/rust-nodejs-darwin-arm64/ironfish-rust-nodejs.darwin-arm64.node"
+
+    resource("source").stage do
       system "yarn"
       cp Dir["ironfish-rust-nodejs/*.node"], "#{libexec}/lib/node_modules/ironfish/node_modules/@ironfish/rust-nodejs"
-    }
+    end
 
     inreplace libexec/"lib/node_modules/ironfish/bin/run", "env node", "env #{Formula["node@18"].bin}/node"
 
