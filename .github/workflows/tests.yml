@@ -28,7 +28,7 @@ jobs:
 
   build-macos:
     needs: tap_syntax
-    runs-on: macos-12
+    runs-on: macos-13
     name: Build formula on macOS
     if: github.event_name == 'pull_request'
 
